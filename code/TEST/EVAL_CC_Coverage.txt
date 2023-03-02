@@ -1,0 +1,38 @@
+[__init__]
+	type= [<class 'str'>, <class 'int'>, <class 'list'>, <class 'dict'>]
+
+[count_alpha]
+	size= [4, 10, 2, 7, 0, 1, 14]
+	string= ['aaaa', 'a        b', 'az', '(a1)', '1239093', '', 'a', 'hello world123']
+	characters= [' ()01239abdehlorwz']
+	result= [4, 2, 1, 0, 10]
+	Character Coverage - Alpha= did not test all alpha characters
+	Character Coverage - digit= did not test all digit characters
+
+[count]
+	result= [0]
+
+[count_numeric]
+	size= [0, 1, 14]
+	string= ['', '1', 'hello world123']
+	characters= [' 123dehlorw']
+	result= [0, 1, 3]
+	Character Coverage - alpha= did not test all alpha characters
+	Character Coverage - digit= did not test all digit characters
+
+[count_vowels]
+	size= [0, 1, 14]
+	string= ['', 'a', 'hello world123']
+	characters= [' 123adehlorw']
+	result= [0, 1, 3]
+	Vowel Coverage= did not test all upper and lower case vowel characters: [U] not in [ 123adehlorw]
+	Character Coverage - alpha= did not test all alpha characters
+	Character Coverage - digit= did not test all digit characters
+
+[is_phonenumber]
+	size= [0, 10]
+	string= ['', '1234567890']
+	characters= ['0123456789']
+	result= [False, True]
+	Character Coverage - alpha= did not test all alpha characters
+

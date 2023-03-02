@@ -1,0 +1,37 @@
+[possible points] Description of testing
+----------------------------------------------------
+
+[5] Testing catches original CharacterCounter Bugs
+        [-5] None of your tests capture the fact that the code had bugs
+        [-0] Count of characters in an empty string is expected to be 0
+    
+[5] Bugs in Original CharacterCounter work in FixedCharacterCounter:
+        [-5] The CharacterCounter code must be fixed and placed in the FixedCharacterCounter.py file.  (You placed the testing code in that file)
+    
+[10] Testing for Exceptions in Constructor:
+        [-5] correct syntax for capturing the exception is:
+        with self.assertRaises(CharacterCounterError, msg="Failed " + test_str):
+
+[10] Testing Count:
+        [-0] expected result is not a dictionary, it is an integer value.  It is the number of characters in the string, not the count of each character.
+        [-5] must test 0 and non-zero results
+        [-0] all characters that can be in a string must be counted.
+        
+[20] Testing Alpha:
+        [-5] must test all alpha characters (upper and lower)
+        [-2] must test all digits characters 
+
+[20] Testing Numeric:
+        [-2] must test all alpha characters (upper and lower)
+        [-5] must test all digits characters 
+
+[20] Testing Vowels:
+        [-2] must test all alpha characters (upper and lower)
+        [-2] must test all digits characters 
+        [-2] must test each vowel (upper and lower) 
+        
+[10] Testing Phone Number:
+
+[-0]  Missing updated comments
+
+Total: 60
