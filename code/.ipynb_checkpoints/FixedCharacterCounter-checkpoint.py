@@ -38,7 +38,9 @@ class CharCounterTestCase(unittest.TestCase):
         # need to test that an exception is raised when given a bad parameter!
         # any other tests?
         
-        
+    def test_count_chars(self):
+         p = CharacterCounter("Hello, world!")
+        self.assertEqual(p.count_chars('l'), 3, "'count_chars()' does not return the correct count")   
 
     # Add Your Test Cases Here...
     def test_constructor(self):
@@ -57,68 +59,89 @@ class CharCounterTestCase(unittest.TestCase):
 
         
     def test_count(self):
-        test_str = "test: empty string"
+          # test empty string
         counter = CharacterCounter("")
-        expected_result = {}
-        self.assertEqual(counter.count(), expected_result, "Failed " + test_str)
+        self.assertEqual(counter.count(), 0, "Failed to return 0 with empty string")
 
-        test_str = "test: single character"
+        # test single character
         counter = CharacterCounter("a")
-        expected_result = {'a': 1}
-        self.assertEqual(counter.count(), expected_result, "Failed " + test_str)
+        self.assertEqual(counter.count(), 1, "Failed to count single character")
 
-        test_str = "test: multiple characters"
+        # test multiple characters
         counter = CharacterCounter("hello world")
-        expected_result = {'h': 1, 'e': 1, 'l': 3, 'o': 2, ' ': 1, 'w': 1, 'r': 1, 'd': 1}
-        self.assertEqual(counter.count(), expected_result, "Failed " + test_str)
+        self.assertEqual(counter.count(), 11, "Failed to count multiple characters")
+
+        # test counting all characters
+        counter = CharacterCounter("!@#$%^&*()_+-={}[]|\:;'<>,.?/~`")
+        self.assertEqual(counter.count(), 32, "Failed to count all characters")
+
+        # test counting with whitespace characters
+        counter = CharacterCounter("  \n\t\r\f\v")
+        self.assertEqual(counter.count(), 6, "Failed to count whitespace characters")
         
     def test_count_alphabetic(self):
-        test_str = "test: empty string"
+        # test empty string
         counter = CharacterCounter("")
-        expected_result = 0
-        self.assertEqual(counter.count_alpha(), expected_result, "Failed " + test_str)
+        self.assertEqual(counter.count_alpha(), 0, "Failed to return 0 with empty string")
 
-        test_str = "test: single alphabetic character"
+        # test single alphabetic character
         counter = CharacterCounter("a")
-        expected_result = 1
-        self.assertEqual(counter.count_alpha(), expected_result, "Failed " + test_str)
+        self.assertEqual(counter.count_alpha(), 1, "Failed to count single alphabetic character")
 
-        test_str = "test: multiple characters with alphabetic and non-alphabetic"
+        # test multiple characters with alphabetic and non-alphabetic
         counter = CharacterCounter("hello world123")
-        expected_result = 10
-        self.assertEqual(counter.count_alpha(), expected_result, "Failed " + test_str)
+        self.assertEqual(counter.count_alpha(), 10, "Failed to count multiple characters with alphabetic and non-alphabetic")
+
+        # test all alpha characters (upper and lower case)
+        counter = CharacterCounter("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+        self.assertEqual(counter.count_alpha(), 52, "Failed to count all alpha characters")
+
+        # test no digit characters
+        counter = CharacterCounter("0123456789")
+        self.assertEqual(counter.count_alpha(), 0, "Failed to count no digit characters")
         
     def test_count_numeric(self):
-        test_str = "test: empty string"
+        # test empty string
         counter = CharacterCounter("")
-        expected_result = 0 
-        self.assertTrue(counter.count_numeric() == expected_result, "Failed " + test_str)
-
-        test_str = "test: single numeric character"
+        self.assertEqual(counter.count_numeric(), 0, "Failed to return 0 with empty string")
+        
+        # test single numeric character
         counter = CharacterCounter("1")
-        expected_result = 1
-        self.assertTrue(counter.count_numeric() == expected_result, "Failed " + test_str)
-
-        test_str = "test: multiple characters with numerics and non-numerics"
+        self.assertEqual(counter.count_numeric(), 1, "Failed to count single numeric character")
+        
+        # test multiple characters with numerics and non-numerics
         counter = CharacterCounter("hello world123")
-        expected_result = 3
-        self.assertTrue(counter.count_numeric() == expected_result, "Failed " + test_str)
+        self.assertEqual(counter.count_numeric(), 3, "Failed to count multiple characters with numerics and non-numerics")
+        
+        # test all digits characters
+        counter = CharacterCounter("0123456789")
+        self.assertEqual(counter.count_numeric(), 10, "Failed to count all digits characters")
         
     def test_count_vowels(self):
         test_str = "test: empty string"
         counter = CharacterCounter("")
         expected_result = 0
-        self.assertTrue (counter.count_vowels() == expected_result, "Failed " + test_str)
+        self.assertTrue(counter.count_vowels() == expected_result, "Failed " + test_str)
 
         test_str = "test: single vowel character"
         counter = CharacterCounter("a")
         expected_result = 1
-        self.assertTrue (counter.count_vowels() == expected_result, "Failed " + test_str)
+        self.assertTrue(counter.count_vowels() == expected_result, "Failed " + test_str)
 
         test_str = "test: multiple characters with vowels and non-vowels"
-        counter = CharacterCounter("hello world123")
+        counter = CharacterCounter("Hello World123")
         expected_result = 3
-        self.assertTrue (counter.count_vowels() == expected_result, "Failed " + test_str)
+        self.assertTrue(counter.count_vowels() == expected_result, "Failed " + test_str)
+
+        test_str = "test: all upper and lower case vowels"
+        counter = CharacterCounter("AaEeIiOoUu")
+        expected_result = 10
+        self.assertTrue(counter.count_vowels() == expected_result, "Failed " + test_str)
+
+        test_str = "test: all digits with vowels"
+        counter = CharacterCounter("1a2e3i4o5u")
+        expected_result = 5
+        self.assertTrue(counter.count_vowels() == expected_result, "Failed " + test_str)
         
     def test_is_phonenumber(self):
         test_str = "test: empty string"
